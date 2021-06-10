@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 public class PmsBrandServiceImpl implements PmsBrandService {
 
+
     @Autowired
     private PmsBrandMapper brandMapper;
     @Override
