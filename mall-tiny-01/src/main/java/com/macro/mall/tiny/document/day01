@@ -1,0 +1,10 @@
+1.创建项目工程:mall-tiny-01;
+2.application.yml文件配置信息：
+    2.1：端口：
+    2.2：数据源配置
+    2.3：mybatis相关的配置；
+3.mybatis自动代码生成器的配置：
+    3.1：数据源配置:generator.properties
+    3.2:generatorConfig.xml:配置数据库连接，Mybatis generator生成model、mapper接口及mapper.xml的路径
+    3.3:Generator:用于生成mbg代码的启动类，创建时注意包结构要和generatorConfig.xml中的包结构对应。
+4.添加MyBatis的Java配置，（有了这个配置在启动类启动的时候，mapper接口中可以不加@mapper注解）
