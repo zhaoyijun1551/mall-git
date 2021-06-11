@@ -8,3 +8,9 @@
     3.2:generatorConfig.xml:配置数据库连接，Mybatis generator生成model、mapper接口及mapper.xml的路径
     3.3:Generator:用于生成mbg代码的启动类，创建时注意包结构要和generatorConfig.xml中的包结构对应。
 4.添加MyBatis的Java配置，（有了这个配置在启动类启动的时候，mapper接口中可以不加@mapper注解）
+
+
+Caused by: java.lang.IllegalArgumentException: Result Maps collection already contains value for com.macro.mall.tiny.mbg.mapper.PmsBrandMapper.BaseResultMap
+原因：意思大概是已经存在这个结果集，花费了好多时间找这个问题的原因，最后用eclipse的全局搜索发现，确实在同一个mapper文件下存在重复的BaseResultMap。
+这个问题的产生原因是：使用mybatis逆向工程多次生成mapper时，未将之前生成的mapper.xml删除，导致其在原有的xml里追加内容。最终导致BaseResultMap重复。
+解决方法：删除已生成的mapper.xml，重新生成。

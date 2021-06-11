@@ -1,0 +1,25 @@
+mall整合Redis实现缓存功能
+
+1.准备工作，安装redis；下载Redis,下载地址：https://github.com/MicrosoftArchive/redis/releases
+    1.1：下载完后解压到指定目录：
+    1.2：在当前地址栏输入cmd后，执行redis的启动命令：redis-server.exe redis.windows.conf
+
+2.整合redis：
+    2.1：pom.xml增加依赖；
+    <!--redis依赖配置-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    2.2：在application.yml中添加Redis的配置及Redis中自定义key的配置。
+    2.3;添加RedisService接口用于定义一些常用Redis操作
+    2.4:实现类注入StringRedisTemplate，实现RedisService接口；
+    2.5：添加UmsMemberController，添加根据电话号码获取验证码的接口和校验验证码的接口
+    2.6：添加UmsMemberService接口
+    2.7：添加UmsMemberService接口的实现类UmsMemberServiceImpl生成验证码时，将自定义的Redis键值加上手机号生成一个Redis的key,以验证码为value存入到Redis中，并设置过期时间为自己配置的时间（这里为120s）。
+    校验验证码时根据手机号码来获取Redis里面存储的验证码，并与传入的验证码进行比对。
+
+ 启动项目访问：访问Swagger的API文档地址http://localhost:8080/swagger-ui.html ,对接口进行测试。
+ 进行接口测试
+
+ 特别注意application.yml文件的数据格式书写；
