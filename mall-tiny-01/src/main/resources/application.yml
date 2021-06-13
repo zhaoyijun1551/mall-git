@@ -7,7 +7,6 @@ spring:
     url:  jdbc:mysql://localhost:3306/mall-leaning?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password:
-
 #redis配置
   redis:
     host: localhost # Redis服务器地址
@@ -21,6 +20,13 @@ spring:
         max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-active: 8 # Redis服务器连接密码（默认为空）
     timeout: 3000ms # 连接超时时间（毫秒）
+  #Elasticsearch相关配置。
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      cluster-name: elasticsearch # es集群的名称
+      cluster-nodes: 127.0.0.1:9300 # es的连接地址及端口号
 
 
 # 自定义redis key

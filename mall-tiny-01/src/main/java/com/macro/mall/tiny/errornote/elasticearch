@@ -1,0 +1,2 @@
+org.elasticsearch.ElasticsearchTimeoutException: java.util.concurrent.TimeoutException: Timeout waiting for task.
+解决：启动elasticsearch，启动kibana;

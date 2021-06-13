@@ -66,8 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 //                .antMatchers("/**")//测试时全部运行访问
 //                .permitAll()
-                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
-                .authenticated();
+//                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
+//                .authenticated()
+                ;
         // 禁用缓存
         httpSecurity.headers().cacheControl();
         // 添加JWT filter
