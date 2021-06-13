@@ -1,0 +1,50 @@
+mall整合Mongodb实现文档操作
+
+Mongodb:Mongodb是为快速开发互联网Web应用而构建的数据库系统，
+        其数据模型和持久化策略就是为了构建高读/写吞吐量和高自动灾备伸缩性的系统
+
+Mongodb的安装和使用:
+    1、下载Mongodb安装包，下载地址：https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.2.21-signed.msi
+    2、选择安装路径进行安装
+    3、在安装路径下创建data\db和data\log两个文件夹
+    4、在安装路径下创建mongod.cfg配置文件：
+        systemLog:
+         destination: file
+         path: D:\developer\env\MongoDB\data\log\mongod.log
+        storage:
+         dbPath: D:\developer\env\MongoDB\data\db
+    5、安装为服务（运行命令需要用管理员权限）：（路径自己换）
+    D:\developer\env\MongoDB\bin\mongod.exe --config "D:\developer\env\MongoDB\mongod.cfg" --install
+    Copy to clipboar
+    6、服务相关命令：
+        启动服务：net start MongoDB
+        关闭服务：net stop MongoDB
+        移除服务：D:\developer\env\MongoDB\bin\mongod.exe --remove
+    7.下载客户端程序：https://download.robomongo.org/1.2.1/windows/robo3t-1.2.1-windows-x86_64-3e50a65.zip
+    8、解压到指定目录，打开robo3t.exe并连接到localhost:27017
+
+Spring Data Mongodb：
+    1、和Spring Data Elasticsearch类似，Spring Data Mongodb是Spring提供的一种以Spring Data风格来操作数据存储的方式，它可以避免编写大量的样板代码。
+    2、常用注解：
+        @Document:标示映射到Mongodb文档上的领域对象
+        @Id:标示某个域为ID域
+        @Indexed:标示某个字段为Mongodb的索引字段
+    3、Sping Data方式的数据操作：
+        继承MongoRepository接口可以获得常用的数据操作方法
+    4、可以使用衍生查询：
+    在接口中直接指定查询方法名称便可查询，无需进行实现，以下为根据会员id按时间倒序获取浏览记录的例子。
+    5、使用@Query注解可以用Mongodb的JSON查询语句进行查询
+
+整合Mongodb实现文档操作：
+    1、在pom.xml中添加相关依赖：
+    <!---mongodb相关依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    2、修改SpringBoot配置文件：
+        修改application.yml文件，在spring:data节点下添加Mongodb相关配置。
+        mongodb:
+          host: localhost # mongodb的连接地址
+          port: 27017 # mongodb的连接端口号
+          database: mall-port # mongodb的连接的数据库
